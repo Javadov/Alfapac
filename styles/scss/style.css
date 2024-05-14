@@ -49,9 +49,9 @@ body {
   right: 50px;
   z-index: 999;
   border: 4px solid black;
-  border-radius: 20px;
-  background-color: var(--color-editBtn);
-  font-size: 30px;
+  border-radius: 50%;
+  background-color: #FE6C6C;
+  font-size: 40px;
 }
 
 canvas {
