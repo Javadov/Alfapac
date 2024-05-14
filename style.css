@@ -1,0 +1,303 @@
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Orbitron:wght@400..900&family=Rammetto+One&display=swap");
+:root {
+  --color-theme: #20D3C2;
+  --color-theme-light: #EDFCFA;
+  --color-theme-dark: #0E153D;
+  --color-dark: #080C24;
+  --color-white: #FFFFFF;
+  --color-gray-0: #AAAAAA;
+  --color-gray-1: #CCCCCC;
+  --color-gray-2: #E3E3E3;
+  --color-gray-3: #EEEEEE;
+  --color-gray-4: #F6F6F6;
+  --color-editBtn: #82D8C6;
+  --color-product-outofstock: #FE6C6C;
+  --font-rammetto: "Rammetto One", sans-serif;
+  --font-audiowide: "Audiowide", sans-serif;
+  --font-orbitron: "Orbitron", sans-serif;
+  --font-kanit: "Kanit", sans-serif;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+  --font-size-14: 1.17rem;
+  --font-size-16: 1.33rem;
+  --font-size-18: 1.50rem;
+  --font-size-24: 2rem;
+  --font-size-36: 3rem;
+  --font-size-60: 5rem;
+  --border-radius-small: 8px;
+  --border-radius-medium: 25px;
+  --border-radius-rounded: 50%;
+}
+
+html,
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: var(--font-orbitron);
+  font-weight: var(--font-weight-regular);
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.editbtn {
+  position: fixed;
+  width: 100px;
+  height: 100px;
+  bottom: 50px;
+  right: 50px;
+  z-index: 999;
+  border: 4px solid black;
+  border-radius: 20px;
+  background-color: var(--color-editBtn);
+  font-size: 30px;
+}
+
+canvas {
+  position: sticky;
+  margin: 30px auto;
+  outline: 1px solid gray;
+  border-radius: 20px 20px 0 0;
+}
+
+.container h1 {
+  display: flex;
+  justify-content: center;
+  font-family: var(--font-orbitron);
+  font-weight: var(--font-weight-bold);
+  font-size: 4rem;
+  margin: 3rem 0;
+}
+.container h2 {
+  display: flex;
+  justify-content: center;
+  font-family: var(--font-orbitron);
+  font-weight: var(--font-weight-bold);
+  font-size: 3rem;
+  margin: 3rem 0;
+}
+.container .__line {
+  display: flex;
+  margin: auto;
+  margin-bottom: 3rem;
+  width: 100%;
+  height: 3px;
+  background-color: #0E153D;
+}
+.container .__grid {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+.container .__grid .__row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  color: #FE6C6C;
+  gap: 30px;
+}
+.container .__grid .__row .__details {
+  position: relative;
+  display: flex;
+  justify-content: right;
+  align-items: baseline; /* Aligns items along their baseline */
+  width: 300px;
+  height: 60px;
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 15px 45px 0 40px;
+}
+.container .__grid .__row .__details label {
+  position: absolute;
+  top: -16px;
+  left: 20px;
+  display: flex;
+  justify-content: center;
+  align-self: flex-end;
+  height: 30px;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 0 15px;
+  background-color: white;
+}
+.container .__grid .__row .__details input {
+  font-size: 22px;
+  width: 100px;
+  text-align: right;
+  padding: 0;
+  border: none;
+  border-bottom: 1px solid gray;
+  margin-right: 50px;
+}
+.container .__grid .__row .__details input:focus {
+  outline: none;
+  border-color: #007BFF; /* Bright blue border on focus for better visibility */
+}
+.container .__grid .__row .__details h6 {
+  position: absolute;
+}
+.container .__grid .__row .__details span {
+  color: #0E153D;
+  font-size: 26px;
+  font-weight: 800;
+  font-stretch: ultra-expanded;
+}
+.container .__grid .__detailsY {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: baseline; /* Aligns items along their baseline */
+  width: 300px;
+  height: 60px;
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 10px 45px;
+}
+.container .__grid .__detailsY label {
+  position: absolute;
+  top: -16px;
+  left: 20px;
+  display: flex;
+  justify-content: center;
+  align-self: flex-end;
+  height: 30px;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 0 15px;
+  background-color: white;
+}
+.container .__grid .__detailsY .sliceCount {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 150px;
+  font-size: 26px;
+}
+.container .__grid .__detailsY .sliceCount button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: transparent;
+  font-size: 26px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+}
+.container .__grid .__detailsY .sliceCount span {
+  color: #0E153D;
+  font-stretch: ultra-expanded;
+}
+.container .__grid .__detailsX {
+  position: relative;
+  display: flex;
+  justify-content: right;
+  align-items: baseline; /* Aligns items along their baseline */
+  width: 300px;
+  height: 60px;
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 10px 45px;
+}
+.container .__grid .__detailsX label {
+  position: absolute;
+  top: -16px;
+  left: 20px;
+  display: flex;
+  justify-content: center;
+  align-self: flex-end;
+  height: 30px;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 0 15px;
+  background-color: white;
+}
+.container .__grid .__detailsX select {
+  font-size: 22px;
+  width: 150px;
+  height: 38px;
+  text-align: right;
+  padding: 0;
+  border: none;
+}
+.container .__grid .__detailsX select:focus {
+  outline: none;
+  border-color: #007BFF; /* Bright blue border on focus for better visibility */
+}
+.container .__grid .__detailsX span {
+  color: #0E153D;
+  font-size: 26px;
+  font-weight: 800;
+  font-stretch: ultra-expanded;
+}
+.container .__grid .__detailsZ {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: baseline; /* Aligns items along their baseline */
+  width: 300px;
+  height: 60px;
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 10px 45px;
+}
+.container .__grid .__detailsZ label {
+  position: absolute;
+  top: -16px;
+  left: 20px;
+  display: flex;
+  justify-content: center;
+  align-self: flex-end;
+  height: 30px;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 0 15px;
+  background-color: white;
+}
+.container .__grid .__detailsZ .rollCount {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 150px;
+}
+.container .__grid .__detailsZ .rollCount button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: transparent;
+  font-size: 26px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+}
+.container .__grid .__detailsZ span {
+  color: #0E153D;
+  font-size: 26px;
+  font-weight: 800;
+  font-stretch: ultra-expanded;
+}
+.container .__grid h6 {
+  display: flex;
+  align-self: flex-end;
+  text-align: end;
+  height: 30px;
+  padding: 0;
+  margin: 20px 0 0 10px;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+footer a {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 10px;
+  color: var(--color-dark);
+}
