@@ -292,12 +292,21 @@ canvas {
 
 footer {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: end;
+  align-items: center;
+  font-size: 18px;
+  padding: 20px 0;
+  gap: 10px;
 }
-footer a {
+footer p {
+  padding: 0;
+  margin: 0;
+}
+footer p a {
   font-size: 20px;
   font-weight: 600;
   margin: 0 10px;
   color: var(--color-dark);
+  text-decoration: none;
 }
