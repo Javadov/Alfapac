@@ -42,8 +42,6 @@ function init() {
 
     controls = new THREE.OrbitControls(camera, renderer.domElement);
 
-    const lengthOfPlastic = parseFloat(document.getElementById('plasticLength').value) || 0;
-
     initRolls();
     updatePallet();
     animate();
@@ -64,7 +62,7 @@ function updatePallet() {
     }
 
     const loader = new THREE.TextureLoader();
-    const woodTexture = loader.load('styles/wood.jpeg');
+    const woodTexture = loader.load('styles/images/wood.jpeg');
     woodTexture.wrapS = THREE.RepeatWrapping;
     woodTexture.wrapT = THREE.RepeatWrapping;
     woodTexture.repeat.set(3, 3); // Adjust texture repeat for better appearance
