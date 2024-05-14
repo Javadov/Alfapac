@@ -8,7 +8,7 @@ let mybutton = document.getElementById("editBtn");
 window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
     mybutton.style.display = "block";
   } else {
     mybutton.style.display = "none";
@@ -28,10 +28,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function init() {
     scene = new THREE.Scene();
-    camera = new THREE.PerspectiveCamera(100, 1950/900, 0.01, 1000);
+    camera = new THREE.PerspectiveCamera(100, 1320/500, 0.01, 1000);
     camera.position.set(0.5, 0.5, 1);
     renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(1950, 900);
+    renderer.setSize(1320, 500);
     renderer.setClearColor(0xffffff, 1);
     document.body.appendChild(renderer.domElement);
 
