@@ -156,7 +156,8 @@ function initThree() {
     const height = dom["three-container"].clientHeight || 500;
 
     state.camera = new THREE.PerspectiveCamera(100, width / height, 0.01, 1000);
-    state.camera.position.set(0.5, 0.5, 1);
+    state.camera.position.set(0.9, 0.7, 1.6);
+    state.camera.lookAt(0, 0, 0);
 
     state.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
     state.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
