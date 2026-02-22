@@ -1,325 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="description" content="Roll Calculator, expertly crafted by Elvin Javadov">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>3D Rullkalkylator</title>
-        <script src="https://unpkg.com/three@0.140.0/build/three.min.js"></script>
-        <script src="https://unpkg.com/three@0.140.0/examples/js/controls/OrbitControls.js"></script>
-        <script src="https://kit.fontawesome.com/5237528770.js" crossorigin="anonymous"></script>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-        <link rel="stylesheet" href="styles/scss2/style.css">
-        <!-- <style>
-            body { margin: 0; }
-            canvas { display: block; }
-        </style> -->
-    </head>
-    <body>
-        <div class="container">
-            <header class="topbar">
-                <div class="topbar__brand">
-                    <img src="/styles/images/alfapac.png" alt="Alfapac">
-                    <!-- <h1>RULLKALKYLATOR</h1> -->
-                    <p>3D roll- & pallkonfigurator</p>
-                </div>
-                <div class="topbar__actions">
-                    <button class="btn btn-sm btn-outline-light" type="button" onclick="location.reload()">Reset</button>
-                    <button class="btn btn-sm btn-warning" type="button" onclick="exportPDF()">Export</button>
-                </div>
-            </header>
-            <div class="__line"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="Roll Calculator, expertly crafted by Elvin Javadov" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3D Rullkalkylator</title>
 
-            <div class="content">
-                <div class="details">
-                    <div class="__details">
-                      <label for="filmType">Typ av Film</label>
-                      <select id="filmType" onchange="calculate()">
-                        <option value="1">Enkel</option>
-                        <option value="2" selected>Slang</option>
-                        <option value="4">Invik</option>
-                      </select>
-                    </div>
-                    <div class="__details">
-                      <label for="windingType">Uppspolning</label>
-                      <select id="windingType" onchange="calculate()">
-                        <option value="1">Enkel</option>
-                        <option value="2" selected>Slang</option>
-                      </select>
-                    </div>
-                    <div class="__detailsX">
-                      <label for="bobbinInnerDiameter">Bobin Diameter</label>
-                      <select id="bobbinInnerDiameter" onchange="calculate()">
-                        <option value="76.5" selected>76.5 mm</option>
-                        <option value="135.5">135.5 mm</option>
-                      </select>
-                    </div>
-                    <div class="__detailsX">
-                      <label for="bobbinThickness">Bobin Tjocklek</label>
-                      <select id="bobbinThickness" onchange="calculate()">
-                        <option value="6" selected>6 mm</option>
-                        <option value="10">10 mm</option>
-                        <option value="12">12 mm</option>
-                        <option value="15">15 mm</option>
-                      </select>
-                    </div>
-                    <div class="__details">
-                        <label for="rollWidth">Bredd</label>
-                        <div class="input-with-unit">
-                            <input type="number" id="rollWidth" min="0" value="800" onchange="calculate()">
-                            <span class="unit">mm</span>
-                        </div>
-                    </div>
+    <script src="https://unpkg.com/three@0.140.0/build/three.min.js"></script>
+    <script src="https://unpkg.com/three@0.140.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://kit.fontawesome.com/5237528770.js" crossorigin="anonymous"></script>
 
-                    <div id="rollFoldCollapse" class="collapse">
-                        <div class="__details" id="rollFoldGroup">
-                            <label for="rollFold">Invik</label>
-                            <div class="input-with-unit">
-                                <input type="number" id="rollFold" min="0" value="0" onchange="calculate()">
-                                <span class="unit">mm</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- <div class="__details">
-                        <label for="rollFold">Invik</label>
-                        <input type="number" id="rollFold" min="0" value="0" onchange="calculate()">
-                        <h6>(mm)</h6>
-                    </div> -->
-                    <div class="__details">
-                        <label for="plasticThickness">Tjocklek</label>
-                        <div class="input-with-unit">
-                            <input type="number" id="plasticThickness" min="0" value="0.072" step="0.001" onchange="calculate()">
-                            <span class="unit">mm</span>
-                        </div>
-                    </div>
-                    <div class="__details">
-                        <label for="plasticLength">Längd</label>
-                        <div class="input-with-unit">
-                            <input type="number" id="plasticLength" min="0" value="0" onchange="calculate()">
-                            <span class="unit">m</span>
-                        </div>
-                    </div>
-                    <div class="__details">
-                        <label for="densitet">Densitet</label>
-                        <div class="input-with-unit">
-                            <input type="number" id="densitet" min="0" value="0.92" step="0.01" onchange="calculate()">
-                            <span class="unit">g/cm³</span>
-                        </div>
-                    </div>
-                        <div class="__details">
-                        <label for="output">Output</label>
-                        <div class="input-with-unit">
-                            <input type="number" id="output" min="0" value="180" step="5" onchange="calculate()">
-                            <span class="unit">kg/h</span>
-                        </div>
-                    </div>
-                    <div class="__details">
-                        <label for="type">Rullar på Bredd</label> 
-                        <div class="sliceCount"><button id="removeSlice" onclick="removeSlice()"><i class="fa-solid fa-minus"></i></button> <span id="sliceCount">1</span> <button id="addSlice" onclick="addSlice()"><i class="fa-solid fa-plus"></i></button></div>
-                    </div>
-                    <div class="__details">
-                        <label for="type">Rullar på Pall</label> 
-                        <div class="rollCount"><button id="removeRoll" onclick="removeRoll()"><i class="fa-solid fa-minus"></i></button> <span id="rollCount">0</span> <button id="addRoll" onclick="addRoll()"><i class="fa-solid fa-plus"></i></button></div>
-                    </div>
-                    <div class="__details">
-                        <label for="palletOrientation">Pallorientering</label>
-                        <select id="palletOrientation" onchange="updatePallet(); centerRolls();">
-                            <option value="long">Lång</option>
-                            <option value="short" selected>Kort</option>
-                        </select>
-                    </div>
-                    <div class="__details">
-                        <label for="rollOrientation">Rullorientering</label> 
-                        <select id="rollOrientation">
-                            <option selected value="lying">Liggange</option>
-                            <option value="standing">Stående</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="canvas" id="three-container-wrapper">
-                    <h2>RESULTAT</h2>
-                    <div class="__row">
-                        <div class="__details">
-                            <label>Gramvikt</label>
-                            <span id="gramWeight">0</span>
-                        </div>
-                        <div class="__details">
-                            <label>Rullvikt</label>
-                            <span id="rollWeight">0</span>
-                        </div>
-                        <div class="__details">
-                            <label>Rullvikt (inkl bobin)</label>
-                            <span id="totalWeight">0</span>
-                        </div>
-                        <div class="__details">
-                            <label>Pallvikt</label>
-                            <span id="totalWeightonPallet">0</span>
-                        </div>
-                        <div class="__details">
-                            <label>Rulldiameter</label>
-                            <span id="rollDiameter">0</span>
-                        </div>
-                    </div>          
-
-                    <div id="three-container"></div>
-                    <div id="palletWarningInline" class="pallet-warning-inline" aria-live="polite"></div>
-                    <div id="rollChangeTime" class="rollChangeTime-inline" aria-live="polite"></div>
-                </div>
-            </div>            
-
-            <!-- <div class="__info">
-                <h2>INFORMATION</h2>
-                <p>Denna kalkylator är designad för att beräkna vikten och dimensionerna av rullar baserat på olika parametrar. Fyll i fälten nedan för att få resultaten.</p>
-                <p>För att beräkna vikten av en rulle, ange bredd, invik, tjocklek, längd och densitet. Välj även typ av uppspolning och filmstil.</p>
-                <p>Rullvikt, totalvikt inklusive bobin, pallvikt och gramvikt kommer att visas automatiskt när du ändrar värdena.</p>
-                <p>Du kan också justera antalet rullar på bredd och pall, samt rullorientering. Använd knapparna för att lägga till eller ta bort rullar.</p>
-                <p>För att se resultaten, klicka på knappen "TOP" för att gå till toppen av sidan.</p>
-                <p>Denna kalkylator är utvecklad av <a href="https://www.linkedin.com/in/Javadov/" target="_blank">Elvin Javadov</a> och är en del av Alfapac AB:s verktyg för att optimera rullproduktion.</p>
-            </div> -->
-
-            <!-- <div class="__grid">
-                <div class="__row">
-                    <div class="__details">
-                        <label for="rollWidth">Bredd</label>
-                        <input type="number" id="rollWidth" min="0" value="800" onchange="calculate()">
-                        <h6>(mm)</h6>
-                    </div>
-                    <div class="__details">
-                        <label for="rollFold">Invik</label>
-                        <input type="number" id="rollFold" min="0" value="0" onchange="calculate()">
-                        <h6>(mm)</h6>
-                    </div>
-                    <div class="__details">
-                        <label for="plasticThickness">Tjocklek</label>
-                        <input type="number" id="plasticThickness" min="0" value="0.072" step="0.001" onchange="calculate()">
-                        <h6>(mm)</h6>
-                    </div>
-                    <div class="__details">
-                        <label for="plasticLength">Längd</label>
-                        <input type="number" id="plasticLength" min="0" value="0" onchange="calculate()">
-                        <h6>(m)</h6>
-                    </div>
-                    <div class="__details">
-                        <label for="densitet">Densitet</label>
-                        <input type="number" id="densitet" min="0" value="0.92" step="0.01" onchange="calculate()">
-                    </div>
-
-                </div>
-                <div class="__row">
-                    <div class="__detailsX">
-                        <label for="type">Uppspolning</label> 
-                        <select id="type" onchange="calculate()">
-                            <option value="1">Enkel</option>
-                            <option selected value="2">Slang</option>
-                        </select>
-                    </div>
-                    <div class="__detailsX">
-                        <label for="style">Typ av Film</label> 
-                        <select id="style" onchange="calculate()">
-                            <option value="1">Enkel</option>
-                            <option selected value="2">Slang</option>
-                            <option value="4">Invik</option>
-                        </select>
-                    </div>
-                    <div class="__detailsX">
-                        <label for="bobbin">Bobin Diameter</label> 
-                        <select id="bobbinInnerDiameter" onchange="calculate()">
-                            <option selected value="76.5">76.5 mm</option>
-                            <option value="135.5">135.50 mm</option>
-                        </select>
-                    </div>
-                    <div class="__detailsX">
-                        <label for="bobbin">Bobin Tjocklek</label> 
-                        <select id="bobbinThickness" onchange="calculate()">
-                            <option selected value="6">6 mm</option>
-                            <option value="10">10 mm</option>
-                            <option value="12">12 mm</option>
-                            <option value="15">15 mm</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="__row">
-                    <div class="__details">
-                        <label for="output">Output</label>
-                        <input type="number" id="output" min="0" value="180" onchange="calculate()">
-                        <h6>(kg/h)</h6>
-                    </div>
-                    <div class="__detailsY">
-                        <label for="type">Rullar på Bredd</label> 
-                        <div class="sliceCount"><button id="removeSlice" onclick="removeSlice()"><i class="fa-solid fa-minus"></i></button> <span id="sliceCount">1</span> <button id="addSlice" onclick="addSlice()"><i class="fa-solid fa-plus"></i></button></div>
-                    </div>
-                    <div class="__detailsX">
-                        <label for="palletOrientation">Pallorientering</label> 
-                        <select id="palletOrientation">
-                            <option value="long">Lång</option>
-                            <option selected value="short">Kort</option>
-                        </select><br>
-                    </div>
-
-                    <div class="__detailsX">
-                        <label for="rollOrientation">Rullorientering</label> 
-                        <select id="rollOrientation">
-                            <option selected value="lying">Liggange</option>
-                            <option value="standing">Stående</option>
-                        </select><br>
-                    </div>
-                </div>
-    
-                <h2>RESULTAT</h2>
-
-                <div class="__row">
-                    <div class="__details">
-                        <label>Rullvikt</label>
-                        <span id="rollWeight">0</span>
-                    </div>
-                    <div class="__details">
-                        <label>Rullvikt (inkl bobin)</label>
-                        <span id="totalWeight">0</span>
-                    </div>
-                    <div class="__details">
-                        <label>Pallvikt</label>
-                        <span id="totalWeightonPallet">0</span>
-                    </div>
-                    <div class="__details">
-                        <label>Rulldiameter</label>
-                        <span id="rollDiameter">0</span>
-                    </div>
-                    <div class="__details">
-                        <label>Gramvikt</label>
-                        <span id="gramWeight">0</span>
-                    </div>
-                    <div class="__detailsZ">
-                        <label for="type">Rullar på Pall</label> 
-                        <div class="rollCount"><button id="removeRoll" onclick="removeRoll()"><i class="fa-solid fa-minus"></i></button> <span id="rollCount">0</span> <button id="addRoll" onclick="addRoll()"><i class="fa-solid fa-plus"></i></button></div>
-                    </div>
-                </div>          
-            </div> -->
-            <footer>
-                <p>Designed and Developed by <a href="https://www.linkedin.com/in/Javadov/" target="_blank">Elvin Javadov</a></p>
-                <p>&copy; 2026 <a href="https://alfapac.se" target="_blank">Alfapac AB</a>. All rights reserved.</p>
-            </footer>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="styles/scss2/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="topbar">
+        <div class="topbar__brand">
+          <img src="/styles/images/alfapac.png" alt="Alfapac" />
+          <p>3D roll- & pallkonfigurator</p>
         </div>
-        <script src="script.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-        <!-- Pallet overflow warning modal -->
-        <div class="modal fade" id="palletWarningModal" tabindex="-1" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content pallet-modal__content">
-              <div class="modal-header pallet-modal__header">
-                <h5 class="modal-title">För många rullar</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-              </div>
-              <div class="modal-body">
-                <p class="pallet-modal__text">Det rekommenderas inte att lägga fler rullar – de kommer att hamna utanför pallen.</p>
-              </div>
-              <div class="modal-footer pallet-modal__footer">
-                <button type="button" class="btn btn-warning" data-bs-dismiss="modal">OK</button>
+        <div class="topbar__actions">
+          <button id="resetBtn" class="btn btn-sm btn-outline-light" type="button">Reset</button>
+          <button id="exportBtn" class="btn btn-sm btn-warning" type="button">Export</button>
+        </div>
+      </header>
+
+      <div class="__line"></div>
+
+      <main class="content">
+        <section class="details" aria-label="Input Panel">
+          <div class="__details">
+            <label for="filmType">Typ av Film</label>
+            <select id="filmType">
+              <option value="1">Enkel</option>
+              <option value="2" selected>Slang</option>
+              <option value="4">Invik</option>
+            </select>
+          </div>
+
+          <div class="__details">
+            <label for="windingType">Uppspolning</label>
+            <select id="windingType">
+              <option value="1">Enkel</option>
+              <option value="2" selected>Slang</option>
+            </select>
+          </div>
+
+          <div class="__detailsX">
+            <label for="bobbinInnerDiameter">Bobin Diameter</label>
+            <select id="bobbinInnerDiameter">
+              <option value="76.5" selected>76.5 mm</option>
+              <option value="135.5">135.5 mm</option>
+            </select>
+          </div>
+
+          <div class="__detailsX">
+            <label for="bobbinThickness">Bobin Tjocklek</label>
+            <select id="bobbinThickness">
+              <option value="6" selected>6 mm</option>
+              <option value="10">10 mm</option>
+              <option value="12">12 mm</option>
+              <option value="15">15 mm</option>
+            </select>
+          </div>
+
+          <div class="__details">
+            <label for="rollWidth">Bredd</label>
+            <div class="input-with-unit">
+              <input type="number" id="rollWidth" min="0" value="800" />
+              <span class="unit">mm</span>
+            </div>
+          </div>
+
+          <div id="rollFoldCollapse" class="collapse">
+            <div class="__details" id="rollFoldGroup">
+              <label for="rollFold">Invik</label>
+              <div class="input-with-unit">
+                <input type="number" id="rollFold" min="0" value="0" />
+                <span class="unit">mm</span>
               </div>
             </div>
           </div>
-        </div>
-    </body>
+
+          <div class="__details">
+            <label for="plasticThickness">Tjocklek</label>
+            <div class="input-with-unit">
+              <input type="number" id="plasticThickness" min="0" value="0.072" step="0.001" />
+              <span class="unit">mm</span>
+            </div>
+          </div>
+
+          <div class="__details">
+            <label for="plasticLength">Längd</label>
+            <div class="input-with-unit">
+              <input type="number" id="plasticLength" min="0" value="0" />
+              <span class="unit">m</span>
+            </div>
+          </div>
+
+          <div class="__details">
+            <label for="densitet">Densitet</label>
+            <div class="input-with-unit">
+              <input type="number" id="densitet" min="0" value="0.92" step="0.01" />
+              <span class="unit">g/cm³</span>
+            </div>
+          </div>
+
+          <div class="__details">
+            <label for="output">Output</label>
+            <div class="input-with-unit">
+              <input type="number" id="output" min="0" value="180" step="5" />
+              <span class="unit">kg/h</span>
+            </div>
+          </div>
+
+          <div class="__details">
+            <label>Rullar på Bredd</label>
+            <div class="sliceCount">
+              <button id="removeSlice" type="button"><i class="fa-solid fa-minus"></i></button>
+              <span id="sliceCount">1</span>
+              <button id="addSlice" type="button"><i class="fa-solid fa-plus"></i></button>
+            </div>
+          </div>
+
+          <div class="__details">
+            <label>Rullar på Pall</label>
+            <div class="rollCount">
+              <button id="removeRoll" type="button"><i class="fa-solid fa-minus"></i></button>
+              <span id="rollCount">0</span>
+              <button id="addRoll" type="button"><i class="fa-solid fa-plus"></i></button>
+            </div>
+          </div>
+
+          <div class="__details">
+            <label for="palletOrientation">Pallorientering</label>
+            <select id="palletOrientation">
+              <option value="long">Lång</option>
+              <option value="short" selected>Kort</option>
+            </select>
+          </div>
+
+          <div class="__details">
+            <label for="rollOrientation">Rullorientering</label>
+            <select id="rollOrientation">
+              <option value="lying" selected>Liggange</option>
+              <option value="standing">Stående</option>
+            </select>
+          </div>
+        </section>
+
+        <section id="three-container-wrapper" class="canvas" aria-label="Results and 3D View">
+          <h2>RESULTAT</h2>
+
+          <div class="__row">
+            <div class="__details">
+              <label>Gramvikt</label>
+              <span id="gramWeight">0</span>
+            </div>
+            <div class="__details">
+              <label>Rullvikt</label>
+              <span id="rollWeight">0</span>
+            </div>
+            <div class="__details">
+              <label>Rullvikt (inkl bobin)</label>
+              <span id="totalWeight">0</span>
+            </div>
+            <div class="__details">
+              <label>Pallvikt</label>
+              <span id="totalWeightonPallet">0</span>
+            </div>
+            <div class="__details">
+              <label>Rulldiameter</label>
+              <span id="rollDiameter">0</span>
+            </div>
+          </div>
+
+          <div id="three-container"></div>
+          <div id="palletWarningInline" class="pallet-warning-inline" aria-live="polite"></div>
+          <div id="rollChangeTime" class="rollChangeTime-inline" aria-live="polite"></div>
+        </section>
+      </main>
+
+      <footer>
+        <p>Designed and Developed by <a href="https://www.linkedin.com/in/Javadov/" target="_blank">Elvin Javadov</a></p>
+        <p>&copy; 2026 <a href="https://alfapac.se" target="_blank">Alfapac AB</a>. All rights reserved.</p>
+      </footer>
+    </div>
+
+    <script src="script.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
