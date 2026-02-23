@@ -108,7 +108,7 @@ body {
 }
 
 .details {
-  padding: 5px;
+  padding: 5px 5px 0 5px;
   height: 100%;
   /* overflow: auto;
   overscroll-behavior: contain;
@@ -142,11 +142,11 @@ body {
   margin-bottom: 5px;
 }
 
-.details .__details:last-child,
+/* .details .__details:last-child,
 .details .__detailsX:last-child,
 .details .__detailsY:last-child {
   margin-bottom: 0;
-}
+} */
 
 #rollFoldGroup {
   width: 100%;
