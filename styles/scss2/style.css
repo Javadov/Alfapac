@@ -82,7 +82,7 @@ body {
   gap: 12px;
   align-items: stretch;
   min-height: 0;
-  max-height: 960px;
+  max-height: 910px;
 }
 
 .details,
@@ -108,11 +108,11 @@ body {
 }
 
 .details {
-  padding: 10px;
+  padding: 5px;
   height: 100%;
-  overflow: auto;
+  /* overflow: auto;
   overscroll-behavior: contain;
-  scrollbar-gutter: stable;
+  scrollbar-gutter: stable; */
 }
 
 .details::-webkit-scrollbar-thumb {
@@ -139,7 +139,13 @@ body {
   border-radius: var(--radius-sm);
   background: rgba(15, 23, 42, 0.55);
   border: 1px solid rgba(148, 163, 184, 0.14);
-  margin-bottom: 8px;
+  margin-bottom: 5px;
+}
+
+.details .__details:last-child,
+.details .__detailsX:last-child,
+.details .__detailsY:last-child {
+  margin-bottom: 0;
 }
 
 #rollFoldGroup {
